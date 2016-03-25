@@ -11,6 +11,9 @@ void Screen::create(){
 }
 
 void Screen::render(sf::RenderWindow& window){
+	sf::CircleShape shape(50,3);
+	shape.setFillColor(sf::Color(100, 250, 50));
+	window.draw(shape);
 }
 
 void Screen::processing(sf::Time time){
