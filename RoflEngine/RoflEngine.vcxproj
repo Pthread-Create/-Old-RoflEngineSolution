@@ -129,6 +129,7 @@
     <ClCompile Include="Main.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="Screen.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Screen.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>

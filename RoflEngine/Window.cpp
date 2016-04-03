@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Window::Window(sf::RenderWindow& window, Screen* screen){
+fi::Window::Window(sf::RenderWindow& window, fi::Screen* screen){
 	m_window = &window;
 	m_screen = screen;
 	window.setVerticalSyncEnabled(true);
@@ -13,26 +13,26 @@ Window::Window(sf::RenderWindow& window, Screen* screen){
 	m_processingThread = thread(&Window::processingThread, this);
 }
 
-Window::~Window() {
+fi::Window::~Window() {
 	m_renderThread.join();
 	m_processingThread.join();
 }
 
-sf::RenderWindow* Window::getWindow() {
+sf::RenderWindow* fi::Window::getWindow() {
 	return m_window;
 }
 
-std::thread* Window::getRenderThread() {
+std::thread* fi::Window::getRenderThread() {
 	return &m_renderThread;
 }
 
-void Window::setScreen(Screen* screen){
+void fi::Window::setScreen(fi::Screen* screen){
 	m_screen = screen;
 }
 
-void Window::renderThread(){
-	Screen* screen = m_screen;
-	Screen* oldscreen = nullptr;
+void fi::Window::renderThread(){
+	fi::Screen* screen = m_screen;
+	fi::Screen* oldscreen = nullptr;
 	while (m_window->isOpen()) {
 		if(!m_oldscrrender && screen != m_screen){
 			oldscreen = m_screen;
@@ -56,8 +56,8 @@ void Window::renderThread(){
 	m_oldscrrender = true;
 }
 
-void Window::processingThread(){
-	Screen* screen = m_screen;
+void fi::Window::processingThread(){
+	fi::Screen* screen = m_screen;
 	sf::Clock clock;
 	while (m_window->isOpen()) {
 		if(!m_oldscrprocessing && screen != m_screen && m_screen->isCreated()){
@@ -69,8 +69,8 @@ void Window::processingThread(){
 	m_oldscrprocessing = true;
 }
 
-void Window::eventThread() {
-	Screen* screen = m_screen;
+void fi::Window::eventThread() {
+	fi::Screen* screen = m_screen;
 	if(screen != m_screen)
 		screen = m_screen;
 	while (m_window->isOpen()) {

@@ -1,27 +1,27 @@
 #include "Screen.h"
 
-Screen::Screen(){
+fi::Screen::Screen(){
 }
 
-Screen::~Screen(){
+fi::Screen::~Screen(){
 }
 
-void Screen::create(){
+void fi::Screen::create(){
 	m_created = true;
 }
 
-void Screen::render(sf::RenderWindow& window){
+void fi::Screen::render(sf::RenderWindow& window){
 	sf::CircleShape shape(50,3);
 	shape.setFillColor(sf::Color(100, 250, 50));
 	window.draw(shape);
 }
 
-void Screen::processing(sf::Time time){
+void fi::Screen::processing(sf::Time time){
 	////////////////////////////////////////
 
 }
 
-void Screen::event(sf::RenderWindow& window){
+void fi::Screen::event(sf::RenderWindow& window){
 	sf::Event event;
 	while(window.pollEvent(event)){
 		if(event.type == sf::Event::Closed)
@@ -29,17 +29,17 @@ void Screen::event(sf::RenderWindow& window){
 	}
 }
 
-void Screen::remove(){
+void fi::Screen::remove(){
 }
 
-bool Screen::isCreated(){
+bool fi::Screen::isCreated(){
 	return m_created;
 }
 
-bool Screen::isUsed(){
+bool fi::Screen::isUsed(){
 	return m_used;
 }
 
-void Screen::setUsed(bool used){
+void fi::Screen::setUsed(bool used){
 	m_used = used;
 }
