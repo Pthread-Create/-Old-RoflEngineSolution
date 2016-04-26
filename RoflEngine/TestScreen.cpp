@@ -36,6 +36,7 @@ void fi::TestScreen::render(sf::RenderWindow & window){
 
 void fi::TestScreen::processing(fi::Window& screenProcessing, sf::Time time){
 	this->time += time.asSeconds();
+	if(this->time >= 10.0)
 		screenProcessing.setScreen(newscreen);
 }
 

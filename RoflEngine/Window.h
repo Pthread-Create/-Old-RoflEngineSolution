@@ -4,6 +4,8 @@
 #include <SFML/Window.hpp>
 #include <thread>
 #include "Screen.h"
+#include "FPSLogger.h"
+
 
 namespace fi{
 	class Window{

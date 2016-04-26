@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FPSLogger.cpp" />
     <ClCompile Include="Main.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
@@ -140,6 +141,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FPSLogger.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Screen.h">

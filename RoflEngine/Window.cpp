@@ -5,7 +5,7 @@ using namespace std;
 fi::Window::Window(sf::RenderWindow& window, fi::Screen* screen){
 	m_window = &window;
 	m_screen = screen;
-	window.setVerticalSyncEnabled(true);
+	//window.setVerticalSyncEnabled(true);
 	window.setActive(false);
 	screen->setUsed(true);
 	screen->create();
@@ -36,6 +36,8 @@ void fi::Window::setScreen(fi::Screen* screen){
 void fi::Window::renderThread(){
 	fi::Screen* screen = m_screen;
 	fi::Screen* oldscreen = nullptr;
+	sf::Clock fpsClock;
+	fi::FPSLogger fpsLogger(10000, 2.0, &std::cout);
 	while (m_window->isOpen()) {
 		if(!m_oldscrrender && screen != m_screen){
 			oldscreen = screen;
@@ -56,6 +58,7 @@ void fi::Window::renderThread(){
 
 		}
 		m_window->clear();
+		fpsLogger.addFPSEntry(1/fpsClock.restart().asSeconds());
 		screen->render(*m_window);
 		m_window->display();
 	}
