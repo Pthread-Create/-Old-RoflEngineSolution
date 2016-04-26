@@ -5,7 +5,7 @@ using namespace std;
 fi::Window::Window(sf::RenderWindow& window, fi::Screen* screen){
 	m_window = &window;
 	m_screen = screen;
-	//window.setVerticalSyncEnabled(true);
+	window.setVerticalSyncEnabled(true);
 	window.setActive(false);
 	screen->setUsed(true);
 	screen->create();
