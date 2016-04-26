@@ -133,6 +133,8 @@
     <ClCompile Include="Screen.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
+    <ClCompile Include="Segment.cpp" />
+    <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="Window.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
@@ -143,6 +145,8 @@
     <ClInclude Include="Screen.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
+    <ClInclude Include="Segment.h" />
+    <ClInclude Include="TestScreen.h" />
     <ClInclude Include="Window.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>

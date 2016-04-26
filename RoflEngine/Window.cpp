@@ -27,7 +27,10 @@ std::thread* fi::Window::getRenderThread() {
 }
 
 void fi::Window::setScreen(fi::Screen* screen){
-	m_screen = screen;
+	if(m_canchangescreen && !m_oldscrrender && !m_oldscrevent && !m_oldscrprocessing){
+		m_canchangescreen = false;
+		m_screen = screen;
+	}
 }
 
 void fi::Window::renderThread(){
@@ -35,18 +38,21 @@ void fi::Window::renderThread(){
 	fi::Screen* oldscreen = nullptr;
 	while (m_window->isOpen()) {
 		if(!m_oldscrrender && screen != m_screen){
-			oldscreen = m_screen;
+			oldscreen = screen;
 			screen = m_screen;
 			screen->setUsed(true);
 			screen->create();
+			screen->setCreated(true);
 			m_oldscrrender = true;
 		}
 		if(m_oldscrrender && m_oldscrevent && m_oldscrprocessing){
 			m_oldscrrender = false;
 			m_oldscrevent = false;
 			m_oldscrprocessing = false;
+			oldscreen->remove();
 			oldscreen->setUsed(false);
 			oldscreen = nullptr;
+			m_canchangescreen = true;
 
 		}
 		m_window->clear();
@@ -64,7 +70,7 @@ void fi::Window::processingThread(){
 			screen = m_screen;
 			m_oldscrprocessing = true;
 		}
-		screen->processing(clock.restart());
+		screen->processing(*this, clock.restart());
 	}
 	m_oldscrprocessing = true;
 }
@@ -81,7 +87,9 @@ void fi::Window::eventThread() {
 		screen->event(*m_window);
 	}
 	m_oldscrevent = true;
-	while(!m_oldscrprocessing || !m_oldscrrender);
+	m_renderThread.join();
+	m_processingThread.join();
+	screen->remove();
 	screen->setUsed(false);
 }
 

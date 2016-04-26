@@ -8,7 +8,7 @@
 namespace fi{
 	class Window{
 	public:
-		Window(sf::RenderWindow& window, Screen* screen);
+		Window(sf::RenderWindow& window, fi::Screen* screen);
 		~Window();
 		void eventThread();
 		inline sf::RenderWindow* getWindow();
@@ -24,5 +24,6 @@ namespace fi{
 		bool m_oldscrrender = false;
 		bool m_oldscrprocessing = false;
 		bool m_oldscrevent = false;
+		bool m_canchangescreen = true;
 	};
 }
