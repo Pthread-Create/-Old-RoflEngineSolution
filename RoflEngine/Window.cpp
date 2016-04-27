@@ -5,7 +5,6 @@ using namespace std;
 fi::Window::Window(sf::RenderWindow& window, fi::Screen* screen){
 	m_window = &window;
 	m_screen = screen;
-	window.setVerticalSyncEnabled(true);
 	window.setActive(false);
 	screen->setUsed(true);
 	screen->create();
@@ -14,8 +13,8 @@ fi::Window::Window(sf::RenderWindow& window, fi::Screen* screen){
 }
 
 fi::Window::~Window() {
-	m_renderThread.join();
-	m_processingThread.join();
+	//m_renderThread.join();
+	//m_processingThread.join();
 }
 
 sf::RenderWindow* fi::Window::getWindow() {
@@ -37,7 +36,7 @@ void fi::Window::renderThread(){
 	fi::Screen* screen = m_screen;
 	fi::Screen* oldscreen = nullptr;
 	sf::Clock fpsClock;
-	fi::FPSLogger fpsLogger(10000, 2.0, &std::cout);
+	fi::FPSLogger fpsLogger(100, 1, &cout);
 	while (m_window->isOpen()) {
 		if(!m_oldscrrender && screen != m_screen){
 			oldscreen = screen;
@@ -89,7 +88,6 @@ void fi::Window::eventThread() {
 		}
 		screen->event(*m_window);
 	}
-	m_oldscrevent = true;
 	m_renderThread.join();
 	m_processingThread.join();
 	screen->remove();

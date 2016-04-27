@@ -1,47 +1,10 @@
 #include "Segment.h"
 #include <iostream>
 
-#define EPS 1.0E-20
+#define EPS 1.0E-40
 
 fi::Segment::Segment(fi::Point &a, fi::Point &b) : a(&a), b(&b){
 }
-/*
-public double[] intersectionSegments(double d ax, double d2 ay, double d3 bx, double d4 by, double d5 cx, double d6 ay, double d7 dx, double d8 dy) {
-boolean bl;
-double d9 = d;
-double d10 = d2;
-double d11 = d3 - d;bax
-double d12 = d4 - d2;bay
-double d13 = d5;
-double d14 = d6;
-double d15 = d8 - d6;dcy
-double d16 = d7 - d5;dcx
-double d17 = d11 * d15 - d12 * d16;
-if (d17 * d17 <= EPS) {
-return null;
-}
-boolean bl2 = bl = d17 < 0.0;
-if (bl) {
-d17 = - d17;
-}
-double d18autre = bay * (cx - ax) + bax * (ay - cy);
-if (bl) {
-d18 = - d18;
-}
-if (d18 <= EPS || d18 >= d17 - EPS) {
-return null;
-}
-d18 = dcy * (cx - ax) + dcx * (ay - cy);
-if (bl) {
-d18 = - d18;
-}
-if (d18 <= EPS || d18 >= d17 - EPS) {
-return null;
-}
-return new double[]{d11 * (d18 /= d17) + d9, d12 * d18 + d10};
-}
-
-*/
 
 fi::Point* fi::Segment::intersect(fi::Segment & b){
 	double ax = this->a->getX();

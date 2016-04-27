@@ -30,7 +30,7 @@ void fi::TestScreen::create(){
 	newscreen = new fi::TestScreen();
 }
 
-void fi::TestScreen::render(sf::RenderWindow & window){
+void fi::TestScreen::render(sf::RenderWindow& window){
 	window.draw(*circle);
 }
 
